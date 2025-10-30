@@ -1,3 +1,7 @@
+@import "tailwindcss";
+@import "@fontsource/anton";
+@import "@fontsource/inter";
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -12,6 +16,114 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+/* Animation keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Animation classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-typewriter {
+  overflow: hidden;
+  border-right: 2px solid white;
+  white-space: nowrap;
+  animation: typewriter 3s steps(40, end) forwards;
+}
+
+/* Animation delays */
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Initial state for animated elements */
+.animate-fade-in-up,
+.animate-slide-in-left,
+.animate-slide-in-right {
+  opacity: 0;
+}
+
+.anton {
+  font-family: "Anton", sans-serif;
+}
+
+.inter {
+  font-family: "Inter", sans-serif;
+}
 
 a {
   font-weight: 500;
@@ -20,6 +132,126 @@ a {
 }
 a:hover {
   color: #535bf2;
+}
+/* Emphasizing animations for "amazing" and "together" */
+@keyframes pulseHighlight {
+  0%,
+  100% {
+    color: white;
+    transform: scale(1);
+    text-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    color: #fbbf24; /* amber-400 */
+    transform: scale(1.05);
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+  }
+}
+
+@keyframes bounceGentle {
+  0%,
+  100% {
+    transform: translateY(0);
+    color: white;
+  }
+  50% {
+    transform: translateY(-5px);
+    color: #fbbf24; /* blue-400 */
+    text-shadow: 0 5px 15px rgba(96, 165, 250, 0.3);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    color: white;
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+      0 0 30px rgba(255, 255, 255, 0.6);
+    color: #fef3c7; /* amber-50 */
+  }
+}
+
+.animate-pulse-highlight {
+  animation: pulseHighlight 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+.animate-bounce-gentle {
+  animation: bounceGentle 2s ease-in-out infinite;
+  display: inline-block;
+  animation-delay: 1s; /* Stagger the animations */
+}
+
+.animate-glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Martin yellow color sequence animation - One by one then back to white */
+.martin-yellow-sequence,
+.martin-yellow-sequence-large {
+  display: inline-block;
+}
+
+.martin-yellow-sequence span,
+.martin-yellow-sequence-large span {
+  display: inline-block;
+  color: white;
+  animation: yellowSequence 1.6s ease-in-out 1 forwards;
+}
+
+/* Ensure smooth spacing between sections */
+.hero-section {
+  min-height: 70vh;
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    min-height: 100vh;
+  }
+}
+
+/* Different delays for each letter to create sequential yellow effect */
+.martin-yellow-sequence span:nth-child(1),
+.martin-yellow-sequence-large span:nth-child(1) {
+  animation-delay: 0.5s;
+}
+.martin-yellow-sequence span:nth-child(2),
+.martin-yellow-sequence-large span:nth-child(2) {
+  animation-delay: 1s;
+}
+.martin-yellow-sequence span:nth-child(3),
+.martin-yellow-sequence-large span:nth-child(3) {
+  animation-delay: 1.5s;
+}
+.martin-yellow-sequence span:nth-child(4),
+.martin-yellow-sequence-large span:nth-child(4) {
+  animation-delay: 2s;
+}
+.martin-yellow-sequence span:nth-child(5),
+.martin-yellow-sequence-large span:nth-child(5) {
+  animation-delay: 2.5s;
+}
+.martin-yellow-sequence span:nth-child(6),
+.martin-yellow-sequence-large span:nth-child(6) {
+  animation-delay: 3s;
+}
+
+@keyframes yellowSequence {
+  0%,
+  80% {
+    color: white;
+  }
+  10%,
+  30% {
+    color: #fbbf24; /* Yellow color */
+  }
+  100% {
+    color: white;
+  }
 }
 
 body {

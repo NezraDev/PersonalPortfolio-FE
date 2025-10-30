@@ -1,0 +1,109 @@
+import "../index.css";
+import { useState, useEffect } from "react";
+
+function Hero() {
+  const [opacity, setOpacity] = useState(1);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.getElementById("home");
+      if (!heroSection) return;
+
+      const rect = heroSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Calculate how much of the section is visible
+      const visibleRatio = Math.max(0, Math.min(1, rect.bottom / windowHeight));
+
+      // Start fading out when the section is 50% out of view
+      const fadeStart = 0.5;
+      let newOpacity = 1;
+
+      if (visibleRatio < fadeStart) {
+        // Calculate opacity based on how much is visible (0 to fadeStart)
+        newOpacity = visibleRatio / fadeStart;
+      }
+
+      setOpacity(newOpacity);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    // Call once to set initial opacity
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
+    <div
+      id="home"
+      className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 md:py-16 lg:py-0"
+      style={{ opacity }}
+    >
+      {/* Desktop Layout - Improved Responsive Design */}
+      <div className="relative w-full h-full max-w-7xl mx-auto px-4 lg:px-8 xl:px-12 2xl:px-16">
+        {/* Main Heading - Top Left */}
+        <div className="absolute top-4 lg:top-6 xl:top-8 2xl:-top-10 left-4 lg:left-6 xl:left-8 2xl:-left-40 anton">
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-white animate-slide-in-left">
+            I'm
+          </h2>
+          <h2 className="text-4xl lg:text-6xl xl:text-7xl 2xl:text-9xl font-bold text-white mt-2 lg:mt-4">
+            <span className="martin-yellow-sequence-large">
+              <span>M</span>
+              <span>A</span>
+              <span>R</span>
+              <span>T</span>
+              <span>I</span>
+              <span>N</span>
+            </span>
+          </h2>
+        </div>
+
+        {/* Specialization - Top Right */}
+        <div className=" absolute bottom-12 lg:bottom-16 xl:bottom-20 2xl:bottom-24 right-4 lg:right-6 xl:right-8 2xl:-right-35 text-right anton">
+          <p className=" text-xl lg:text-xl xl:text-2xl 2xl:text-4xl text-white max-w-xs lg:max-w-sm xl:max-w-md 2xl:max-w-lg animate-slide-in-right leading-tight ">
+            Specializing in UX/UI Design and
+            <br />
+            Front-End Web Development.
+          </p>
+        </div>
+
+        {/* Name Section - Bottom Left */}
+        <div className="absolute bottom-24 lg:bottom-28 xl:bottom-32 2xl:bottom-36 left-4 lg:left-6 xl:left-8 2xl:-left-40 anton">
+          <h2 className="text-3xl lg:text-4xl xl:text-5xl 2xl:text-7xl font-bold text-white animate-slide-in-left animation-delay-300">
+            FRONTEND
+          </h2>
+          <h2 className="text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl font-bold text-white animate-slide-in-left animation-delay-500 mt-2 lg:mt-4">
+            DEVELOPER
+          </h2>
+        </div>
+
+        {/* Call to Action - Bottom Right */}
+        <div className="absolute top-12 lg:top-16 xl:top-20 2xl:top-24 right-4 lg:right-6 xl:right-8 2xl:-right-35 text-right anton">
+          <p className="text-lg lg:text-xl xl:text-2xl 2xl:text-3xl font-semibold text-white italic animate-typewriter leading-tight">
+            Let's create
+            <br />
+            something
+            <br />
+            <span className="animate-pulse-highlight">amazing</span>
+            <br />
+            <span className="animate-bounce-gentle">together.</span>
+          </p>
+        </div>
+
+        {/* Center Image for Desktop - Improved Responsive Positioning */}
+        <div className="absolute inset-0 flex items-center justify-center animate-float">
+          <img
+            src="/image7ss.png"
+            alt="Martin"
+            className="w-full max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-3xl object-contain"
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Hero;
