@@ -1,6 +1,5 @@
 import "../index.css";
 import Resume from "./../../src/assets/Resume.pdf";
-
 import CV from "./../../src/assets/CV.pdf";
 
 const About = () => {
@@ -8,7 +7,6 @@ const About = () => {
     <div id="about" className="min-h-screen flex items-center justify-center">
       <div className="w-full max-w-7xl mx-auto px-4 lg:px-8 xl:px-12 2xl:px-16 py-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
-          {/* Text Content - Left Side */}
           <div className="w-full">
             <div className="">
               <div className="anton absolute bottom-165 left-40">
@@ -102,8 +100,6 @@ const About = () => {
           </div>
         </div>
       </div>
-
-      {/* Image - Right Side */}
       <div className="hidden lg:block absolute right-0 bottom-0 w-1/2 max-w-2xl animate-float">
         <img
           src="/image7ss.png"

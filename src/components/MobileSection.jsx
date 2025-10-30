@@ -5,20 +5,15 @@ import CV from "./../../src/assets/CV.pdf";
 function MobileSection() {
   return (
     <div className="w-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16 bg-transparent">
-      {/* Section 1 - Hero Section - UNCHANGED */}
       <div className="max-w-6xl mx-auto w-full">
-        {/* New Layout: Image Center, Text Around */}
         <div className="flex flex-col items-center">
-          {/* Top: Frontend Developer - Centered */}
           <div className="mb-4 text-center">
             <p className="text-5xl sm:text-xl md:text-2xl lg:text-3xl text-white mb-1 sm:mb-2 md:mb-3 anton leading-tight animate-fade-in-up">
               FRONTEND DEVELOPER
             </p>
           </div>
 
-          {/* Middle Row: Image Center, Name Left, Specializing Right */}
           <div className="flex flex-row items-center justify-between w-full mb-4">
-            {/* Left: Name */}
             <div className="w-64 relative bottom-12 left-12 text-left">
               <div className="anton">
                 <h2 className="text-end text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight animate-slide-in-left">
@@ -35,7 +30,6 @@ function MobileSection() {
               </div>
             </div>
 
-            {/* Center: Image */}
             <div className="mx-4">
               <img
                 src="/image7.png"
@@ -44,7 +38,6 @@ function MobileSection() {
               />
             </div>
 
-            {/* Right: Specializing */}
             <div className="relative bottom-12 right-7 text-right w-96">
               <p className="text-start text-xs sm:text-sm md:text-base lg:text-lg text-white anton leading-tight animate-fade-in-up animation-delay-200">
                 Specializing in UX/UI Design and Front-End Web Development.
@@ -52,7 +45,6 @@ function MobileSection() {
             </div>
           </div>
 
-          {/* Bottom: Call to Action - Centered */}
           <div className="text-center">
             <p className="text-xl relative bottom-8 sm:text-sm md:text-base font-semibold text-white italic anton leading-tight animate-fade-in-up animation-delay-400">
               Let's create something{" "}
@@ -63,17 +55,13 @@ function MobileSection() {
         </div>
       </div>
 
-      {/* Section 2 - About Section - WITH BUTTONS ADDED */}
       <div
         id="hero-section"
         className="flex items-center justify-center w-full"
       >
         <div className="w-full max-w-7xl mx-auto px-4 lg:px-8 xl:px-12 2xl:px-16 py-4">
-          {/* Mobile Layout - Top row with intro and image beside each other */}
           <div className="lg:hidden flex flex-col">
-            {/* Top Row: Intro text and image side by side */}
             <div className="flex flex-row items-center justify-between w-full mb-8">
-              {/* Left Column - Intro Text */}
               <div className="flex-1 pr-4">
                 <div className="anton">
                   <h2 className="text-2xl font-bold leading-tight text-white mb-2 text-end">
@@ -88,7 +76,6 @@ function MobileSection() {
                 </div>
               </div>
 
-              {/* Right Column - Image */}
               <div className="flex">
                 <img
                   src="/image7ss.png"
@@ -98,7 +85,6 @@ function MobileSection() {
               </div>
             </div>
 
-            {/* Bottom Section: Who Am I content */}
             <div className="anton">
               <h3 className="text-xl font-bold text-white mb-4">Who Am I?</h3>
 
@@ -146,7 +132,6 @@ function MobileSection() {
                   <span className="text-yellow-500">CV and résumé </span>below.
                 </p>
 
-                {/* ADDED BUTTONS IN ROW */}
                 <div className="flex flex-col gap-4 mt-6">
                   <a
                     href={CV}
