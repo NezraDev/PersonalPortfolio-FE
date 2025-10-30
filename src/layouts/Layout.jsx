@@ -23,7 +23,7 @@ function Layout({ children }) {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex flex-col flex-1">
+      <div className="relative z-10 flex flex-col flex-1 top-4">
         <header
           className="w-full justify-center items-center p-1 sm:p-4 md:p-4 lg:p-6 flex"
           role="banner"
