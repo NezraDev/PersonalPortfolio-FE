@@ -122,7 +122,7 @@ function MobileSection() {
                   Currently, I serve as the{" "}
                   <span className="text-yellow-500">
                     President of Legion of Lures Esports
-                  </span>
+                  </span>{" "}
                   at Laguna State Polytechnic University – Los Baños Campus and
                   as a{" "}
                   <span className="text-yellow-500">
@@ -147,7 +147,7 @@ function MobileSection() {
                 </p>
 
                 {/* ADDED BUTTONS IN ROW */}
-                <div className="flex flex-row gap-4 mt-6">
+                <div className="flex flex-col gap-4 mt-6">
                   <a
                     href={CV}
                     download="Arwil_Martin_Paraiso_CV.pdf"
