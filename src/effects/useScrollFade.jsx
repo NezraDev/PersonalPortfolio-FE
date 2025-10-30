@@ -1,43 +1,87 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 export const useScrollFade = (options = {}) => {
-  const { fadeStart = 0.5, initialOpacity = 1, threshold = 0 } = options;
+  const {
+    fadeStart = 0.9,
+    fadeInStart = 0.9,
+    maxOpacity = 2,
+    minOpacity = 0,
+    direction = "both",
+  } = options;
 
-  const [opacity, setOpacity] = useState(initialOpacity);
+  const [opacity, setOpacity] = useState(maxOpacity);
   const sectionRef = useRef(null);
+  const lastScrollY = useRef(0);
+  const isScrollingDown = useRef(true);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
+  const calculateOpacity = useCallback(
+    (scrollDirection) => {
+      if (!sectionRef.current) return maxOpacity;
 
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
       const sectionHeight = sectionRef.current.offsetHeight;
 
-      // Calculate how much of the section is visible
       const visibleHeight =
         Math.min(rect.bottom, windowHeight) - Math.max(rect.top, 0);
-      const visibleRatio = Math.max(threshold, visibleHeight / windowHeight);
+      const visibleRatio = Math.max(0, visibleHeight / windowHeight);
 
-      let newOpacity = initialOpacity;
+      let newOpacity = maxOpacity;
 
-      if (visibleRatio < fadeStart) {
-        // Smooth fade as visible ratio decreases
-        newOpacity = visibleRatio / fadeStart;
+      if (scrollDirection === "down" || direction === "both") {
+        if (visibleRatio < fadeStart) {
+          newOpacity = (visibleRatio / fadeStart) * maxOpacity;
+        }
       }
 
-      // Ensure opacity stays between 0 and 1
-      newOpacity = Math.max(0, Math.min(1, newOpacity));
+      if (scrollDirection === "up" || direction === "both") {
+        if (visibleRatio > fadeInStart) {
+          const fadeInProgress =
+            (visibleRatio - fadeInStart) / (1 - fadeInStart);
+          newOpacity = Math.max(newOpacity, fadeInProgress * maxOpacity);
+        } else {
+          newOpacity = Math.max(newOpacity, 0);
+        }
+      }
+
+      newOpacity = Math.max(minOpacity, Math.min(maxOpacity, newOpacity));
+
+      return newOpacity;
+    },
+    [fadeStart, fadeInStart, maxOpacity, minOpacity, direction]
+  );
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      isScrollingDown.current = currentScrollY > lastScrollY.current;
+      lastScrollY.current = currentScrollY;
+
+      const newOpacity = calculateOpacity(
+        isScrollingDown.current ? "down" : "up"
+      );
       setOpacity(newOpacity);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Initialize opacity
+    let ticking = false;
+    const optimizedScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", optimizedScroll, { passive: true });
+    handleScroll();
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", optimizedScroll);
     };
-  }, [fadeStart, initialOpacity, threshold]);
+  }, [calculateOpacity]);
 
-  return { opacity, sectionRef };
+  return { opacity, sectionRef, isScrollingDown: isScrollingDown.current };
 };

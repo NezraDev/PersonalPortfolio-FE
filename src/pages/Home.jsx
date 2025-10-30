@@ -3,8 +3,11 @@ import { useScrollFade } from "../effects/useScrollFade";
 
 function Home() {
   const { opacity, sectionRef } = useScrollFade({
-    fadeStart: 1.1,
-    initialOpacity: 0.4,
+    fadeStart: 0.6, // Start fading out after 60% of section is scrolled
+    fadeInStart: 0.2, // Start fading in when 20% of section becomes visible
+    maxOpacity: 1, // Fully opaque when visible
+    minOpacity: 0.1, // Never completely invisible
+    direction: "both", // Apply effects in both scroll directions
   });
 
   return (

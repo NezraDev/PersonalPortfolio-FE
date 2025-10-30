@@ -1,10 +1,23 @@
 import "../index.css";
 import Resume from "./../../src/assets/Resume.pdf";
 import CV from "./../../src/assets/CV.pdf";
+import { useScrollFade } from "../effects/useScrollFade";
 
 const About = () => {
+  const { opacity, sectionRef } = useScrollFade({
+    fadeStart: 0.6, // Start fading out after 60% of section is scrolled
+    fadeInStart: 0.2, // Start fading in when 20% of section becomes visible
+    maxOpacity: 1, // Fully opaque when visible
+    minOpacity: 0.1, // Never completely invisible
+    direction: "both", // Apply effects in both scroll directions
+  });
   return (
-    <div id="about" className="min-h-screen flex items-center justify-center">
+    <div
+      id="about"
+      className="min-h-screen flex items-center justify-center"
+      ref={sectionRef}
+      style={{ opacity }}
+    >
       <div className="w-full max-w-7xl mx-auto px-4 lg:px-8 xl:px-12 2xl:px-16 py-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           <div className="w-full">
