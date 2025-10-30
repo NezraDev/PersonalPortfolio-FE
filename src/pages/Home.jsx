@@ -1,40 +1,16 @@
 import "../index.css";
-import { useState, useEffect } from "react";
+import { useScrollFade } from "../effects/useScrollFade";
 
 function Home() {
-  const [opacity, setOpacity] = useState(1);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const heroSection = document.getElementById("home");
-      if (!heroSection) return;
-
-      const rect = heroSection.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      const visibleRatio = Math.max(0, Math.min(1, rect.bottom / windowHeight));
-
-      const fadeStart = 0.5;
-      let newOpacity = 1;
-
-      if (visibleRatio < fadeStart) {
-        newOpacity = visibleRatio / fadeStart;
-      }
-
-      setOpacity(newOpacity);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const { opacity, sectionRef } = useScrollFade({
+    fadeStart: 1.1,
+    initialOpacity: 0.4,
+  });
 
   return (
     <div
-      id="home"
+      ref={sectionRef}
+      id="scroll-fade"
       className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 md:py-16 lg:py-0"
       style={{ opacity }}
     >
@@ -55,8 +31,8 @@ function Home() {
           </h2>
         </div>
 
-        <div className=" absolute bottom-12 lg:bottom-16 xl:bottom-20 2xl:bottom-24 right-4 lg:right-6 xl:right-8 2xl:-right-35 text-right anton">
-          <p className=" text-xl lg:text-xl xl:text-2xl 2xl:text-4xl text-white max-w-xs lg:max-w-sm xl:max-w-md 2xl:max-w-lg animate-slide-in-right leading-tight ">
+        <div className="absolute bottom-12 lg:bottom-16 xl:bottom-20 2xl:bottom-24 right-4 lg:right-6 xl:right-8 2xl:-right-35 text-right anton">
+          <p className="text-xl lg:text-xl xl:text-2xl 2xl:text-4xl text-white max-w-xs lg:max-w-sm xl:max-w-md 2xl:max-w-lg animate-slide-in-right leading-tight">
             Specializing in UX/UI Design and
             <br />
             Front-End Web Development.
@@ -84,7 +60,7 @@ function Home() {
           </p>
         </div>
 
-        <div className="absolute inset-0 flex items-center justify-center animate-float">
+        <div className="absolute inset-0 flex items-center justify-center">
           <img
             src="/image7ss.png"
             alt="Martin"

@@ -100,7 +100,7 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="hidden lg:block absolute right-0 bottom-0 w-1/2 max-w-2xl animate-float">
+      <div className="hidden lg:block absolute right-0 bottom-0 w-1/2 max-w-2xl ">
         <img
           src="/image7ss.png"
           alt="Martin"
