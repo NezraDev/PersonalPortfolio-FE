@@ -7,9 +7,12 @@ function Projects() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [imageErrors, setImageErrors] = useState({});
   const [showTooltip, setShowTooltip] = useState(false);
-  const [activeTooltip, setActiveTooltip] = useState(null); // To track which tooltip is active
+  const [activeTooltip, setActiveTooltip] = useState(null);
 
-  // Sample project data with month and year and GitHub links
+  const { style, sectionRef } = useScrollFade({
+    navHeight: 120,
+    fadeDistance: 150,
+  });
 
   useEffect(() => {
     if (isModalOpen) {
@@ -18,7 +21,6 @@ function Projects() {
       document.body.style.overflow = "unset";
     }
 
-    // Cleanup function
     return () => {
       document.body.style.overflow = "unset";
     };
@@ -42,7 +44,7 @@ function Projects() {
         "Contributed as a front-end developer and implemented back-end functionality for login and signup features to a web-based Information Management System (IMS) for Gender and Development data using, Flask Python, Django, JavaScript, Tailwind CSS, Java, and SQL to streamline data procedures. This project was part of the LSPU–Los Baños Extension Program",
       image: "./2.png",
       date: "May 2025",
-      githubLink: "", // No GitHub link for this project
+      githubLink: "",
     },
     {
       id: 3,
@@ -62,7 +64,7 @@ function Projects() {
         "Contributed as a lead designer to a mobile fitness application prototype in Figma as part of an Introduction to Graphics and Visual Computing course. Designed wireframes, high-fidelity mockups, and interactive components to illustrate user flows for workout tracking and fitness-related features",
       image: "./4.png",
       date: "May 2025",
-      figmaLink: "https://figma.com/your-prototype-link", // Added Figma link
+      figmaLink: "https://figma.com/your-prototype-link",
     },
     {
       id: 5,
@@ -92,7 +94,6 @@ function Projects() {
         "Contributed as a front-end developer to a full-stack library management web application built with Flask, integrating custom sorting algorithms to optimize data processing and book organization. Developed as a research-based final project for the Data Structures and Algorithms course.",
       image: "./7.png",
       date: "December 2024",
-      // No GitHub link
     },
     {
       id: 8,
@@ -145,6 +146,8 @@ function Projects() {
     <div
       className="relative z-10 py-16 px-4 sm:px-6 lg:px-8 flex-1"
       id="projects"
+      ref={sectionRef}
+      style={style}
     >
       <div className="max-w-7xl mx-auto">
         <div className=" relative top-8 text-center mb-16 anton">
@@ -159,19 +162,17 @@ function Projects() {
           </p>
         </div>
 
-        {/* Projects Grid */}
         <div
-          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 transition-all duration-300 ${
+          className={`inter grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 transition-all duration-300 ${
             isModalOpen ? "blur-sm" : ""
           }`}
         >
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group relative bg-black bg-opacity-40 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden cursor-pointer transform transition-all duration-500 hover:-translate-y-3 hover:shadow-3xl min-h-[380px] flex flex-col"
+              className="project-card group relative bg-black bg-opacity-40 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden cursor-pointer min-h-[380px] flex flex-col border-transparent"
               onClick={() => openModal(project)}
             >
-              {/* Project Image Template */}
               <div className="h-40 bg-gradient-to-br from-yellow-500 to-black relative overflow-hidden flex-shrink-0">
                 {!imageErrors[project.id] ? (
                   <img
@@ -213,9 +214,7 @@ function Projects() {
                 </div>
               </div>
 
-              {/* Project Content */}
               <div className="flex-1 flex flex-col justify-between p-6 text-yellow-500">
-                {/* Tech Stack - Fixed height container to maintain consistent spacing */}
                 <div className="min-h-[72px] flex flex-col justify-start mb-4">
                   <div className="flex flex-wrap gap-2">
                     {project.techStack.slice(0, 3).map((tech, index) => (
@@ -234,14 +233,12 @@ function Projects() {
                   </div>
                 </div>
 
-                {/* Project Description - Fixed with text-justify and consistent positioning */}
                 <div className="flex-1 mb-4">
                   <p className="text-yellow-300 text-opacity-90 text-justify text-sm leading-relaxed line-clamp-4">
                     {project.description}
                   </p>
                 </div>
 
-                {/* Month and Year Display - Replaced "Click to view details" */}
                 <div className="flex justify-between items-center pt-4 border-t border-yellow-500 border-opacity-30">
                   <div className="text-yellow-500 font-semibold text-sm drop-shadow">
                     <div className="text-yellow-400">{project.date}</div>
@@ -270,29 +267,23 @@ function Projects() {
                 </div>
               </div>
 
-              {/* Enhanced Hover Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 via-yellow-500 to-black opacity-0 group-hover:opacity-30 transition-all duration-500"></div>
 
-              {/* Shine Effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-yellow-500 via-10% to-transparent opacity-0 group-hover:opacity-20 transform group-hover:translate-x-full transition-all duration-1000"></div>
             </div>
           ))}
         </div>
 
-        {/* Modal - Smaller version */}
         {isModalOpen && selectedProject && (
           <div className="fixed inset-0 flex items-center justify-center p-4 z-50">
-            {/* Background Overlay with Blur Effect */}
             <div
               className="absolute inset-0 bg-opacity-50 backdrop-blur-sm transition-all duration-300"
               onClick={closeModal}
               aria-hidden="true"
             />
 
-            {/* Modal Content - Smaller */}
             <div className="relative z-10 bg-black bg-opacity-90 backdrop-blur-lg rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border border-yellow-600 border-opacity-50 transform transition-all duration-300 scale-95 hover:scale-100">
               <div className="p-6">
-                {/* Header with close button */}
                 <div className="flex justify-between items-start mb-4">
                   <div className="text-yellow-400 text-lg font-semibold">
                     {selectedProject.date}
@@ -317,12 +308,10 @@ function Projects() {
                   </button>
                 </div>
 
-                {/* Project Title */}
                 <h2 className="text-xl font-bold text-yellow-300 mb-4 drop-shadow-lg text-center">
                   {selectedProject.title}
                 </h2>
 
-                {/* Project Image in Modal - Smaller */}
                 <div className="h-48 bg-gradient-to-br from-yellow-500 to-black rounded-xl mb-4 relative overflow-hidden">
                   {!imageErrors[selectedProject.id] ? (
                     <img
@@ -353,7 +342,6 @@ function Projects() {
                   )}
                 </div>
 
-                {/* Tech Stack */}
                 <div className="mb-4">
                   <h3 className="text-xl font-semibold text-yellow-400 mb-3 drop-shadow">
                     Tech Stack
@@ -370,7 +358,6 @@ function Projects() {
                   </div>
                 </div>
 
-                {/* Description */}
                 <div className="mb-6">
                   <h3 className="text-xl font-semibold text-yellow-400 mb-3 drop-shadow">
                     Description
@@ -380,10 +367,8 @@ function Projects() {
                   </p>
                 </div>
 
-                {/* GitHub and Figma Buttons */}
                 <div className="pt-4 border-t border-yellow-600 border-opacity-50">
                   <div className="flex flex-col gap-3">
-                    {/* GitHub Button */}
                     <div className="relative">
                       <div
                         onClick={() =>
@@ -413,7 +398,6 @@ function Projects() {
                         </div>
                       </div>
 
-                      {/* Tooltip for unavailable GitHub */}
                       {activeTooltip === "github" &&
                         !selectedProject.githubLink && (
                           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-black text-white text-sm rounded-lg shadow-lg z-20">
@@ -423,7 +407,6 @@ function Projects() {
                         )}
                     </div>
 
-                    {/* Figma Button - Only show for projects with Figma link */}
                     {selectedProject.figmaLink && (
                       <div className="relative">
                         <div
@@ -452,6 +435,93 @@ function Projects() {
           </div>
         )}
       </div>
+      <style jsx>{`
+        @keyframes slideInRight {
+          from {
+            transform: translateX(-100%);
+          }
+          to {
+            transform: translateX(0%);
+          }
+        }
+
+        /* 3D Card Animations */
+        .project-card {
+          transform-style: preserve-3d;
+          perspective: 1000px;
+          transition: all 0.5s ease-out;
+        }
+
+        .project-card:hover {
+          transform: translateY(-12px) rotateX(5deg) rotateY(5deg) scale(1.02);
+          box-shadow: 0 25px 50px -12px rgba(234, 179, 8, 0.4),
+            0 0 40px rgba(234, 179, 8, 0.2);
+        }
+
+        /* Glow effect */
+        .project-card::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(
+            135deg,
+            rgba(234, 179, 8, 0.1) 0%,
+            transparent 50%,
+            rgba(234, 179, 8, 0.1) 100%
+          );
+          opacity: 0;
+          transition: opacity 0.5s ease;
+          border-radius: 1rem;
+          z-index: 1;
+        }
+
+        .project-card:hover::before {
+          opacity: 1;
+        }
+
+        /* Enhanced glow border */
+        .project-card::after {
+          content: "";
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          background: linear-gradient(
+            45deg,
+            #fbbf24,
+            #f59e0b,
+            #d97706,
+            #f59e0b,
+            #fbbf24
+          );
+          border-radius: 1.1rem;
+          z-index: -1;
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          filter: blur(8px);
+        }
+
+        .project-card:hover::after {
+          opacity: 0.6;
+          animation: glow 2s linear infinite;
+        }
+
+        @keyframes glow {
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
+        }
+      `}</style>
     </div>
   );
 }

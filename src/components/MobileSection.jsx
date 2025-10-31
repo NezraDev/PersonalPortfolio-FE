@@ -1,10 +1,20 @@
 import "../index.css";
 import Resume from "./../../src/assets/Resume.pdf";
 import CV from "./../../src/assets/CV.pdf";
+import { useScrollFade } from "../effects/useScrollFade";
 
 function MobileSection() {
+  const { style, sectionRef } = useScrollFade({
+    navHeight: 120, // Adjust this to match your fixed navigation height
+    fadeDistance: 150, // Adjust this to control how far the fade extends
+    // You can keep or remove the other options since they're handled differently now
+  });
   return (
-    <div className="w-full  flex-col items-center  justify-center px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16 bg-transparent">
+    <div
+      className="w-full  flex-col items-center  justify-center px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16 bg-transparent"
+      style={style}
+      ref={sectionRef}
+    >
       <div className="max-w-6xl mx-auto w-full relative top-20 mb-16">
         <div className="flex flex-col items-center">
           <div className="mb-4 text-center ">

@@ -2,12 +2,10 @@ import "../index.css";
 import { useScrollFade } from "../effects/useScrollFade";
 
 function Home() {
-  const { opacity, sectionRef } = useScrollFade({
-    fadeStart: 0.6,
-    fadeInStart: 0.2,
-    maxOpacity: 1,
-    minOpacity: 0.1,
-    direction: "both",
+  const { style, sectionRef } = useScrollFade({
+    navHeight: 120, // Adjust this to match your fixed navigation height
+    fadeDistance: 150, // Adjust this to control how far the fade extends
+    // You can keep or remove the other options since they're handled differently now
   });
 
   return (
@@ -15,7 +13,7 @@ function Home() {
       ref={sectionRef}
       id="home"
       className="relative w-full min-h-screen flex items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-12 md:py-16 lg:py-0"
-      style={{ opacity }}
+      style={style} // Apply the mask style instead of opacity
     >
       <div className="relative w-full h-full max-w-7xl mx-auto px-4 lg:px-8 xl:px-12 2xl:px-16">
         <div className="absolute top-4 lg:top-6 xl:top-8 2xl:-top-10 left-4 lg:left-6 xl:left-8 2xl:-left-40 anton">
@@ -34,8 +32,8 @@ function Home() {
           </h2>
         </div>
 
-        <div className="absolute bottom-12 lg:bottom-16 xl:bottom-20 2xl:bottom-24 right-4 lg:right-6 xl:right-8 2xl:-right-35 text-right anton">
-          <p className="text-xl lg:text-xl xl:text-2xl 2xl:text-4xl text-white max-w-xs lg:max-w-sm xl:max-w-md 2xl:max-w-lg animate-slide-in-right leading-tight">
+        <div className="absolute bottom-12 lg:bottom-16 xl:bottom-20 2xl:bottom-24 right-4 lg:right-6 xl:right-8 2xl:-right-35 text-right anton ">
+          <p className="text-xl lg:text-xl xl:text-2xl 2xl:text-4xl text-white max-w-xs lg:max-w-sm xl:max-w-md 2xl:max-w-lg  animate-slide-in-left leading-tight ">
             Specializing in UX/UI Design and
             <br />
             Front-End Web Development.

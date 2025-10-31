@@ -4,19 +4,16 @@ import CV from "./../../src/assets/CV.pdf";
 import { useScrollFade } from "../effects/useScrollFade";
 
 const About = () => {
-  const { opacity, sectionRef } = useScrollFade({
-    fadeStart: 0.9,
-    fadeInStart: 0.9,
-    maxOpacity: 2,
-    minOpacity: 0,
-    direction: "both",
+  const { style, sectionRef } = useScrollFade({
+    navHeight: 120,
+    fadeDistance: 150,
   });
   return (
     <div
       id="about"
       className="min-h-screen flex items-center justify-center relative"
       ref={sectionRef}
-      style={{ opacity }}
+      style={style}
     >
       <div className="w-full max-w-7xl mx-auto px-4 lg:px-8 xl:px-12 2xl:px-16 py-12">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
@@ -90,7 +87,7 @@ const About = () => {
                       <a
                         href={CV}
                         download="Arwil_Martin_Paraiso_CV.pdf"
-                        className="bg-black border-2 border-black hover:bg-yellow-500 text-black hover:text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
+                        className="bg-black hover:bg-yellow-500 text-black hover:text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
                       >
                         <span className="text-white inter">Download CV</span>
                       </a>
@@ -99,7 +96,7 @@ const About = () => {
                       <a
                         href={Resume}
                         download="Arwil_Martin_Paraiso_Resume.pdf"
-                        className="bg-black border-2 border-black hover:bg-yellow-500 text-black hover:text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
+                        className="bg-black  hover:bg-yellow-500 text-black hover:text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
                       >
                         <span className="text-white inter">
                           Download Resume

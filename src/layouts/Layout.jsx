@@ -4,6 +4,7 @@ import Home from "../pages/Home";
 import About from "../pages/About";
 import Projects from "../pages/Projects";
 import MobileSection from "../components/MobileSection";
+import Skills from "../pages/Skills";
 
 function Layout({ children }) {
   return (
@@ -39,6 +40,9 @@ function Layout({ children }) {
             </section>
             <section className="min-h-screen w-full">
               <Projects />
+            </section>
+            <section className="min-h-screen w-full">
+              <Skills />
             </section>
           </div>
 
