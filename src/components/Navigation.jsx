@@ -27,7 +27,7 @@ function Navigation() {
   };
 
   return (
-    <nav className="flex bg-white shadow z-51 h-12 p-6 justify-center items-center rounded-2xl w-full anton fixed">
+    <nav className="flex bg-white shadow z-51 h-12 p-6 justify-center items-center rounded-2xl w-full anton fixed top-6 p">
       <ul className="flex flex-row flex-wrap justify-center gap-3 sm:gap-6 md:gap-8 lg:gap-12 list-none text-black text-sm sm:text-base md:text-lg lg:text-xl xl:text-xl">
         {menuItems.map((item) => (
           <li

@@ -14,7 +14,7 @@ const About = () => {
   return (
     <div
       id="about"
-      className="min-h-screen flex items-center justify-center"
+      className="min-h-screen flex items-center justify-center relative"
       ref={sectionRef}
       style={{ opacity }}
     >
@@ -22,7 +22,7 @@ const About = () => {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           <div className="w-full">
             <div className="">
-              <div className="anton absolute bottom-165 left-40">
+              <div className="anton absolute bottom-160 left-40">
                 <h2 className="text-3xl lg:text-5xl xl:text-6xl font-bold leading-tight text-white mb-4">
                   Hi, I'm{" "}
                   <span className="text-yellow-500">Arwil Martin Paraiso</span>
@@ -31,7 +31,7 @@ const About = () => {
                   — a UI/UX design enthusiast.
                 </h2>
               </div>
-              <div className="anton absolute bottom-15 left-40">
+              <div className="anton absolute bottom-13 left-40">
                 <h3 className="text-2xl lg:text-4xl font-bold text-white mb-6">
                   Who Am I?
                 </h3>
@@ -113,7 +113,7 @@ const About = () => {
           </div>
         </div>
       </div>
-      <div className="hidden lg:block absolute right-0 bottom-0 w-1/2 max-w-2xl ">
+      <div className="hidden lg:block absolute right-0 bottom-4 w-1/2 max-w-2xl ">
         <img
           src="/image7ss.png"
           alt="Martin"

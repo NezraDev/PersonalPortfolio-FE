@@ -63,7 +63,7 @@ function Home() {
           </p>
         </div>
 
-        <div className="absolute inset-0 flex items-center justify-center">
+        <div className="absolute top-18 inset-1 flex items-center justify-center">
           <img
             src="/image7ss.png"
             alt="Martin"

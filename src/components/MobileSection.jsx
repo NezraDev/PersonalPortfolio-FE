@@ -4,21 +4,21 @@ import CV from "./../../src/assets/CV.pdf";
 
 function MobileSection() {
   return (
-    <div className="w-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16 bg-transparent">
-      <div className="max-w-6xl mx-auto w-full">
+    <div className="w-full  flex-col items-center  justify-center px-4 sm:px-6 md:px-8 py-8 sm:py-12 md:py-16 bg-transparent">
+      <div className="max-w-6xl mx-auto w-full relative top-20 mb-16">
         <div className="flex flex-col items-center">
-          <div className="mb-4 text-center">
-            <p className="text-5xl sm:text-xl md:text-2xl lg:text-3xl text-white mb-1 sm:mb-2 md:mb-3 anton leading-tight animate-fade-in-up">
+          <div className="mb-4 text-center ">
+            <p className="text-4xl sm:text-xl md:text-2xl lg:text-3xl text-white mb-1 sm:mb-2 md:mb-3 anton leading-tight animate-fade-in-up">
               FRONTEND DEVELOPER
             </p>
           </div>
 
           <div className="flex flex-row items-center justify-between w-full mb-4">
-            <div className="w-64 relative bottom-12 left-12 text-left">
+            <div className="w-72 relative bottom-12 left-12 text-left">
               <div className="anton">
-                <h2 className="text-end text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight animate-slide-in-left">
+                <h2 className="text-end text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight animate-slide-in-left">
                   I'm{" "}
-                  <span className="martin-yellow-sequence">
+                  <span className="martin-yellow-sequence text-xl">
                     <span>M</span>
                     <span>A</span>
                     <span>R</span>
@@ -34,11 +34,11 @@ function MobileSection() {
               <img
                 src="/image7.png"
                 alt="Martin"
-                className="relative bottom-10 left-5 sm:w-40 md:w-48 lg:w-56 xl:w-64 object-contain"
+                className="relative bottom-10 left-2 sm:w-40 md:w-48 lg:w-56 xl:w-64 object-contain"
               />
             </div>
 
-            <div className="relative bottom-12 right-7 text-right w-96">
+            <div className="relative bottom-12 right-7 text-right w-24">
               <p className="text-start text-xs sm:text-sm md:text-base lg:text-lg text-white anton leading-tight animate-fade-in-up animation-delay-200">
                 Specializing in UX/UI Design and Front-End Web Development.
               </p>

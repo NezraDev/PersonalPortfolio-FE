@@ -2,13 +2,14 @@ import "../index.css";
 import NavBar from "../components/Navigation";
 import Home from "../pages/Home";
 import About from "../pages/About";
+import Projects from "../pages/Projects";
 import MobileSection from "../components/MobileSection";
 
 function Layout({ children }) {
   return (
     <div
       role="main"
-      className="flex flex-col w-screen relative "
+      className="flex flex-col w-screen min-h-screen relative"
       style={{
         background: "linear-gradient(to top, #eab308, #000000)",
         backgroundAttachment: "fixed",
@@ -23,26 +24,27 @@ function Layout({ children }) {
         aria-hidden="true"
       />
 
-      <div className="relative z-10 flex flex-col flex-1 top-4">
-        <header
-          className="w-full justify-center items-center p-1 sm:p-4 md:p-4 lg:p-6 flex"
-          role="banner"
-        >
+      <div className="relative z-10 flex flex-col flex-1 ">
+        <header className=" justify-center items-center " role="banner">
           <NavBar />
         </header>
 
         <main className="flex-1 flex flex-col">
-          {children}
-
-          <div className="hidden lg:block flex-1">
-            <Home />
-            <About />
+          <div className="flex-col hidden lg:block flex-1">
+            <section className="min-h-screen w-full">
+              <Home />
+            </section>
+            <section className="min-h-screen w-full">
+              <About />
+            </section>
+            <section className="min-h-screen w-full">
+              <Projects />
+            </section>
           </div>
 
           <div className="block lg:hidden flex-1">
             <MobileSection />
           </div>
-          <div className="hidden lg:block flex-1"></div>
         </main>
       </div>
     </div>
